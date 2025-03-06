@@ -1,7 +1,7 @@
 # Clipshort
 
-シームレスに LLM やシェルと対話するための macOS 用アプリケーションです。
-キーボードショートカットを用いて即座にウィンドウを開き、選択されたテキストに関して質問することができます。
+特定のアプリケーションに依存せず、LLM やシェルとインタラクティブに対話するための macOS 用アプリケーションです。
+キーボードショートカットを用いて即座に選択されたテキストに関して即座に質問することができます。
 
 **Clipshort** – a macOS application that allows seamless interaction with LLMs and shells. You can instantly open a window using keyboard shortcuts and ask questions about the selected text.
 
