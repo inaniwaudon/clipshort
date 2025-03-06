@@ -5,7 +5,7 @@
 
 **Clipshort** – a macOS application that allows seamless interaction with LLMs and shells. You can instantly open a window using keyboard shortcuts and ask questions about the selected text.
 
-＜動画＞
+https://github.com/user-attachments/assets/2d9a00ed-c824-4101-a4d4-19834697ecce
 
 ## インストール
 
