@@ -98,8 +98,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
-            // Command + Q: アプリケーション終了を無効化して、ウィンドウのみを閉じる
-            if event.modifierFlags.contains(.command) && event.charactersIgnoringModifiers == "q" {
+            // Command + Q, Esc: アプリケーション終了を無効化して、ウィンドウのみを閉じる
+            if event.modifierFlags.contains(.command) && event.charactersIgnoringModifiers == "q" ||
+                event.charactersIgnoringModifiers == "\u{1B}" {
                 self.clipboardState!.copy()
                 self.closeWindow()
                 return nil
