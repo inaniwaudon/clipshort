@@ -89,7 +89,7 @@ struct Settings {
         } catch {
             let alert = NSAlert()
             alert.messageText = "エラー"
-            alert.informativeText = "設定ファイルの読込に失敗しました。~/clipshortrc.json を確認するか、一度削除してください。"
+            alert.informativeText = "設定ファイルの読込に失敗しました。~/.clipshortrc.json を確認するか、一度削除してください。"
             alert.alertStyle = .warning
             alert.addButton(withTitle: "再試行")
             alert.buttons[0].tag = NSApplication.ModalResponse.OK.rawValue

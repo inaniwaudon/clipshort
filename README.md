@@ -40,7 +40,7 @@
 
 ### 設定
 
-`/settings` と入力して実行することにより、設定用 JSON ファイル（`~/clipshortrc.json`）が開きます。JSON ファイルは、以下の通りに指定されます。
+`/settings` と入力して実行することにより、設定用 JSON ファイル（`~/.clipshortrc.json`）が開きます。JSON ファイルは、以下の通りに指定されます。
 
 ```json
 {
