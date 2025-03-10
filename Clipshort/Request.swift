@@ -10,11 +10,14 @@ import Foundation
 struct Request {
     static func fetchOpenAIApi(content: String, completion: @escaping (String) -> Void) {
         // リクエストを準備
-        let endpoint = "https://api.openai.com/v1/chat/completions"
+        let endpoint = "https://openrouter.ai/api/v1/chat/completions"
         var request = URLRequest(url: URL(string: endpoint)!)
         request.httpMethod = "POST"
         request.addValue("Bearer \(Settings.llmApiKey)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        // OpenRouterの追加ヘッダー（オプショナル）
+        request.addValue("dev.yokohama.clipshort", forHTTPHeaderField: "HTTP-Referer")
+        request.addValue("Clipshort", forHTTPHeaderField: "X-Title")
         
         let body: [String: Any] = [
             "messages": [
@@ -53,7 +56,11 @@ struct Request {
                    let message = choices.first?["message"] as? [String: Any],
                    let content = message["content"] as? String {
                     completion(content)
-                } else {
+                } else if let error = jsonResponse?["error"] as? [String: Any],
+                          let message = error["message"] as? String {
+                   // OpenRouterのエラーメッセージを表示
+                   completion("API Error: \(message)")
+               } else {
                     completion("Invalid request. Please check llm.apiKey or llm.model.")
                 }
             } catch {

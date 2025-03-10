@@ -15,7 +15,7 @@ struct Settings {
     private static var config: Config?
     
     private static let defaultDefault = "llm"
-    private static let defaultLlmModel = "gpt-4o-mini"
+    private static let defaultLlmModel = "openai/gpt-4o-mini"
     private static let defaultSystemPrompt = "以下の質問に簡潔に回答してください"
     private static let defaultShellBin = "/bin/zsh"
     private static let defaultShellInitial = "source ~/.zshrc"
