@@ -15,7 +15,8 @@ struct Settings {
     private static var config: Config?
     
     private static let defaultDefault = "llm"
-    private static let defaultLlmModel = "gpt-4o-mini"
+    private static let defaultLlmProvider = "openai"
+    private static let defaultLlmModel = "openai/gpt-4o-mini"
     private static let defaultSystemPrompt = "以下の質問に簡潔に回答してください"
     private static let defaultShellBin = "/bin/zsh"
     private static let defaultShellInitial = "source ~/.zshrc"
@@ -24,11 +25,24 @@ struct Settings {
     static var isDefaultLLM: Bool {
         return (config?.defaultMode ?? defaultDefault) == "llm"
     }
+    static var llmProvider: String {
+        return config?.llm.provider ?? defaultLlmProvider
+    }
     static var llmApiKey: String {
         return config?.llm.apiKey ?? ""
     }
     static var llmModel: String {
         return config?.llm.model ?? defaultLlmModel
+    }
+    static var formattedModelName: String {
+        let model = llmModel
+        // OpenAIプロバイダーの場合、"openai/gpt-4o" から "gpt-4o" のようにプロバイダー部分を削除
+        if llmProvider == "openai" && model.contains("/") {
+            if let index = model.firstIndex(of: "/") {
+                return String(model[model.index(after: index)...])
+            }
+        }
+        return model
     }
     static var systemPrompt: String {
         return config?.llm.systemPrompt ?? defaultSystemPrompt
@@ -56,7 +70,7 @@ struct Settings {
     private static func newFile() {
         let config = Config(
             defaultMode: "llm",
-            llm: ConfigLLM(apiKey: "YOUR_API_KEY", model: defaultLlmModel, systemPrompt: defaultSystemPrompt),
+            llm: ConfigLLM(apiKey: "YOUR_API_KEY", model: defaultLlmModel, systemPrompt: defaultSystemPrompt, provider: defaultLlmProvider),
             shell: ConfigShell(bin: defaultShellBin, initial: defaultShellInitial),
             shortcut: [:],
             width: defaultWidth)
@@ -117,6 +131,7 @@ struct ConfigLLM: Codable {
     let apiKey: String
     let model: String
     let systemPrompt: String
+    let provider: String? // "openai" or "openrouter"
 }
 
 struct ConfigShell: Codable {
