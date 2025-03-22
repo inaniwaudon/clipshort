@@ -50,9 +50,10 @@
   },
   "defaultMode" : "デフォルトでの実行設定。llm または sh",
   "llm" : {
-    "model" : "OpenAI のモデル",
+    "model" : "LLM のモデル",
     "systemPrompt" : "システムプロンプト",
-    "apiKey" : "OpenAI の API キー"
+    "apiKey" : "API キー",
+    "provider" : "LLM のプラットフォーム。openai または openrouter（任意、既定値は openai）"
   },
   "width" : ウィンドウの幅,
   "shortcut" : {
@@ -61,6 +62,13 @@
 }
 ```
 
+#### LLM の指定
+LLM には [OpenAI API](https://openai.com/index/openai-api/) を直接使用するか、または [OpenRouter](https://openrouter.ai/) を使用することができます。この挙動は `llm.provider` の値に応じて変化します。
+
+- OpenAI API を使用する場合、`llm.model` にはモデル名を直接指定（例：`gpt-4o`）するか、または `openai/gpt-4o` のように指定します。
+- `openrouter` の場合は、`google/gemini-2.0-flash-001` のように指定します。
+
+#### ショートカット
 `shortcut` に辞書形式でショートカットを登録すると、よく使う入力文を簡単に呼び出すことが可能となります。
 
 - ショートカットの内容には、プロンプトおよびシェルコマンドの両方を記述できます。
@@ -93,4 +101,4 @@ Can you review it again?
 
 ## ライセンス
 
-Copyright (c) 2024 いなにわうどん. This application is released under the MIT License, see [LICENSE](https://github.com/inaniwaudon/clipshort/blob/main/LICENSE).
+Copyright (c) 2025 いなにわうどん. This application is released under the MIT License, see [LICENSE](https://github.com/inaniwaudon/clipshort/blob/main/LICENSE).
